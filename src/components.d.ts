@@ -6,10 +6,15 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonVariant } from "./components/input-button/input-button";
+import { CheckboxVariant } from "./components/input-checkbox/input-checkbox";
 export namespace Components {
     interface InputButton {
         "href"?: string;
         "variant": ButtonVariant;
+    }
+    interface InputCheckbox {
+        "checked": boolean;
+        "variant": CheckboxVariant;
     }
     interface ThemeRoot {
         "background": string;
@@ -27,6 +32,12 @@ declare global {
         prototype: HTMLInputButtonElement;
         new (): HTMLInputButtonElement;
     };
+    interface HTMLInputCheckboxElement extends Components.InputCheckbox, HTMLStencilElement {
+    }
+    var HTMLInputCheckboxElement: {
+        prototype: HTMLInputCheckboxElement;
+        new (): HTMLInputCheckboxElement;
+    };
     interface HTMLThemeRootElement extends Components.ThemeRoot, HTMLStencilElement {
     }
     var HTMLThemeRootElement: {
@@ -35,6 +46,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "input-button": HTMLInputButtonElement;
+        "input-checkbox": HTMLInputCheckboxElement;
         "theme-root": HTMLThemeRootElement;
     }
 }
@@ -42,6 +54,10 @@ declare namespace LocalJSX {
     interface InputButton {
         "href"?: string;
         "variant"?: ButtonVariant;
+    }
+    interface InputCheckbox {
+        "checked"?: boolean;
+        "variant"?: CheckboxVariant;
     }
     interface ThemeRoot {
         "background"?: string;
@@ -53,6 +69,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "input-button": InputButton;
+        "input-checkbox": InputCheckbox;
         "theme-root": ThemeRoot;
     }
 }
@@ -61,6 +78,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "input-button": LocalJSX.InputButton & JSXBase.HTMLAttributes<HTMLInputButtonElement>;
+            "input-checkbox": LocalJSX.InputCheckbox & JSXBase.HTMLAttributes<HTMLInputCheckboxElement>;
             "theme-root": LocalJSX.ThemeRoot & JSXBase.HTMLAttributes<HTMLThemeRootElement>;
         }
     }

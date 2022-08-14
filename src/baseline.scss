@@ -10,6 +10,11 @@
   box-sizing: border-box;
 }
 
+* {
+  font-variation-settings: 'MONO' var(--text-mono), 'CASL' var(--text-casual),
+    'slnt' var(--text-slant), 'CRSV' var(--text-cursive);
+}
+
 :root {
   // We use css variables for the variable font properties
   --text-mono: 0;
@@ -92,4 +97,63 @@ layout-grid {
     justify-content: center;
     align-items: center;
   }
+}
+
+layout-button-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+layout-button-row :empty {
+  flex: 1;
+}
+layout-button-row[align='left'] {
+  justify-content: flex-start;
+}
+layout-button-row[align='right'] {
+  justify-content: flex-end;
+}
+
+layout-container {
+  display: grid;
+  align-items: center;
+  margin: 2rem 0;
+  width: 100%;
+  row-gap: 1rem;
+
+  & > * {
+    grid-column: 3;
+  }
+  & > .full-width,
+  & > layout-container {
+    grid-column: 2 / -2;
+  }
+}
+
+layout-container layout-container {
+  margin: 0;
+}
+
+layout-container {
+  --size: 45rem;
+}
+layout-container[size='small'] {
+  --size: 20rem;
+}
+layout-container[size='medium'] {
+  --size: 30rem;
+}
+layout-container[size='large'] {
+  --size: 60rem;
+}
+layout-container[size='xl'] {
+  --size: 100rem;
+}
+
+layout-container,
+layout-container[size='full'] {
+  grid-template-columns: 0 2rem 1fr 2rem 0;
+}
+layout-container[size] {
+  grid-template-columns: 1fr 2rem min(var(--size), calc(100% - 4rem)) 2rem 1fr;
 }

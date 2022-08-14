@@ -3,6 +3,7 @@ theme-root {
   background: rgb(var(--bg));
   color: rgb(var(--on-bg));
   --ease-in-out: cubic-bezier(0.4, 0, 0.1, 1);
+  flex: 1;
 }
 
 theme-root[swap] * {

@@ -2,33 +2,46 @@
 <html dir="ltr" lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Stencil Component Starter</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
 
     <script type="module" src="/build/paperdave.esm.js"></script>
     <script nomodule src="/build/paperdave.js"></script>
     <link rel="stylesheet" href="/build/paperdave.css" />
   </head>
   <body>
-    <theme-root class="root">
-      <layout-flex gap>
-        <layout-flex gap>
-          <h1>@paperdave/ui</h1>
-          <p>UI Building Web Components, Made with Stencil and Web Components Spec.</p>
-        </layout-flex>
-        <layout-flex row gap>
+    <theme-root>
+      <layout-container size="normal">
+        <h1>@paperdave/ui</h1>
+        <p>
+          UI Building Web Components, Made with Stencil and Web Components Spec. This text is inside
+          of a "container", which gives the fixed-width style with proper margins. Containers can be
+          placed inside each other without fear of stacking margins; Everything on this page is put
+          inside of a root container to ensure theres always a
+          <code>2rem</code> margin. For images and other full-width content, the
+          <code>full-width</code> class can be applied.
+        </p>
+
+        <h2>Buttons and Button Rows</h2>
+        <layout-button-row>
+          <input-button>Normal</input-button>
           <input-button variant="primary">Primary</input-button>
           <input-button variant="secondary">Secondary</input-button>
+          <input-button variant="tertiary">Tertiary</input-button>
           <input-button variant="subtle">Subtle</input-button>
-          <input-button variant="normal" href="https://google.com">Subtle</input-button>
-        </layout-flex>
-      </layout-flex>
-    </theme-root>
+          <div></div>
+          <input-button variant="normal" href="https://google.com">
+            https://google.com
+          </input-button>
+        </layout-button-row>
 
-    <style>
-      .root {
-        padding: 2rem;
-      }
-    </style>
+        <h2>Checkboxes</h2>
+        <input-checkbox>Checkbox</input-checkbox>
+        <input-checkbox variant="secondary" checked>Checkbox</input-checkbox>
+        <input-checkbox variant="tertiary" checked>Checkbox</input-checkbox>
+      </layout-container>
+    </theme-root>
   </body>
 </html>

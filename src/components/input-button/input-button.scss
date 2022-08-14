@@ -53,12 +53,14 @@ input-button > * {
 }
 
 input-button {
-  &[variant='normal'],
+  &:not([variant]) > *,
+  &[variant='normal'] > *,
   &[variant='subtle'] > * {
     outline-color: rgba(var(--on-bg), 0.2);
   }
 
-  &[variant='normal'] > * {
+  &[variant='normal'] > *,
+  &:not([variant]) > * {
     background-color: rgba(var(--on-bg), 0.2);
   }
 
