@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Element } from '@stencil/core';
 import { ColorArray } from './color-utils';
 import { LCHPalette } from './lch-palette';
 
@@ -15,6 +15,23 @@ export class ThemeRoot {
   @Prop() secondary: string | undefined = undefined;
   @Prop() tertiary: string | undefined = undefined;
   @Prop() error: string = '#ff0000';
+
+  @Element() el?: HTMLElement;
+  private waiting = false;
+
+  componentWillRender() {
+    this.el?.setAttribute('swap', '');
+  }
+
+  componentDidRender() {
+    if (!this.waiting) {
+      this.waiting = true;
+      requestAnimationFrame(() => {
+        this.waiting = false;
+        this.el?.removeAttribute('swap');
+      });
+    }
+  }
 
   render() {
     const neutralPal = LCHPalette.fromHex(this.background);

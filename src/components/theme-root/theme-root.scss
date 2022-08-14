@@ -13,6 +13,7 @@ theme-root[swap] * {
     properly handle this.
   */
   transition-duration: 0ms !important;
+  transition-delay: 0ms !important;
 }
 
 :root {

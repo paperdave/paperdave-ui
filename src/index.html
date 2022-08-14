@@ -12,16 +12,35 @@
     <link rel="stylesheet" href="/build/paperdave.css" />
   </head>
   <body>
-    <theme-root>
+    <theme-root id="theme">
       <layout-container size="normal">
         <h1>@paperdave/ui</h1>
+        <p>My own ui library for making web applications. It has these keys:</p>
+
+        <layout-flex row gap>
+          <input type="color" value="#f2f2f2" id="bg-color" />
+          <input type="color" value="#22c646" id="pri-color" />
+        </layout-flex>
+
+        <ul>
+          <li>
+            Polished and good feeling to interact with, with the extreme attention to detail I am
+            known for.
+          </li>
+          <li>Easily themeable and customizable, beyond dark and light modes.</li>
+          <li>Simplistic and small, but large enough to cover most needs.</li>
+          <li>"Modern" and "Fast", but those words are thrown around too much</li>
+        </ul>
+
         <p>
-          UI Building Web Components, Made with Stencil and Web Components Spec. This text is inside
-          of a "container", which gives the fixed-width style with proper margins. Containers can be
-          placed inside each other without fear of stacking margins; Everything on this page is put
-          inside of a root container to ensure theres always a
-          <code>2rem</code> margin. For images and other full-width content, the
-          <code>full-width</code> class can be applied.
+          Its overall style can be described as a "Less Corporate" version of Material Design, with
+          my own design ideals thrown in. We use simple LCH-based palettes over their HCT tonal
+          ones.
+        </p>
+
+        <p>
+          Components are built using Stencil, which exports them as web components, to be used in
+          any framework, such as Svelte, React, Vue, Raw HTML, etc.
         </p>
 
         <h2>Buttons and Button Rows</h2>
@@ -43,5 +62,14 @@
         <input-checkbox variant="tertiary" checked>Checkbox</input-checkbox>
       </layout-container>
     </theme-root>
+
+    <script>
+      document.getElementById('bg-color').addEventListener('input', e => {
+        document.getElementById('theme').background = e.target.value;
+      });
+      document.getElementById('pri-color').addEventListener('input', e => {
+        document.getElementById('theme').primary = e.target.value;
+      });
+    </script>
   </body>
 </html>

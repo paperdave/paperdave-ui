@@ -14,8 +14,9 @@ layout-container {
   }
 }
 
-layout-container layout-container {
-  margin: 0;
+layout-container > * {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 layout-container {

@@ -1,6 +1,6 @@
 # @paperdave/ui
 
-My own ui library for making svelte applications. It has these keys:
+My own ui library for making web applications. It has these keys:
 
 - Polished and good feeling to interact with, with the extreme attention to detail I am known for.
 - Easily themeable and customizable, beyond dark and light modes.
