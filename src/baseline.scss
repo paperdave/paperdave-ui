@@ -1,0 +1,95 @@
+// Recursive Font
+@import url('https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..800,0.25,0,0..1&display=swap');
+// Uncomment the below for a font that is 2.5x the filesize (281kb)
+// @import url('https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..1000,0..1,0..1,0..1&display=swap');
+
+// Required to use this box model as the default.
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+:root {
+  // We use css variables for the variable font properties
+  --text-mono: 0;
+  --text-casual: 0.25;
+  --text-slant: 0;
+  --text-cursive: 0.5;
+  // We use css variables for material symbols
+  --icon-fill: 1;
+  --icon-grad: 0;
+  // The default theme, extracted from <theme-root/>'s defaults
+  --bg: 241, 242, 243;
+  --on-bg: 75, 67, 73;
+  --pri: 32, 199, 72;
+  --on-pri: -39, 43, -46;
+  --on-bg-pri: -52, 87, -26;
+  --sec: -162, 206, 215;
+  --on-sec: -72, 48, 61;
+  --on-bg-sec: -99, 92, 108;
+  --tri: 226, 137, 258;
+  --on-tri: 61, -26, 94;
+  --on-bg-tri: 113, 18, 145;
+}
+
+// Set --text-mono variable instead of switching fonts.
+code,
+kbd,
+samp,
+pre {
+  --text-mono: 1;
+  font-family: inherit;
+}
+
+body {
+  font-family: Recursive, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+layout-flex {
+  display: flex;
+  &[row] {
+    flex-direction: row;
+  }
+  &,
+  &[column] {
+    flex-direction: column;
+  }
+  &[row][reverse] {
+    flex-direction: row-reverse;
+  }
+  &[reverse],
+  &[column][reverse] {
+    flex-direction: column-reverse;
+  }
+  &[gap] {
+    gap: 1rem;
+  }
+  &[center] {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+layout-grid {
+  display: grid;
+
+  &[center] {
+    justify-content: center;
+    align-items: center;
+  }
+}
