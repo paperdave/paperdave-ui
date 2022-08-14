@@ -6,7 +6,7 @@ const rgb = (c: ColorArray) => c.map(x => Math.round(x)).join(',');
 
 @Component({
   tag: 'theme-root',
-  styleUrl: 'theme-root.css',
+  styleUrl: 'theme-root.scss',
 })
 export class ThemeRoot {
   @Prop() inline: boolean = false;
@@ -19,8 +19,16 @@ export class ThemeRoot {
   render() {
     const neutralPal = LCHPalette.fromHex(this.background);
     const primaryPal = LCHPalette.fromHex(this.primary);
-    const secondaryPal = this.secondary ? LCHPalette.fromHex(this.secondary) : new LCHPalette((primaryPal.hue + 60) % 360, primaryPal.chroma, primaryPal.initialLightness);
-    const tertiaryPal = this.tertiary ? LCHPalette.fromHex(this.tertiary) : new LCHPalette((primaryPal.hue + 180) % 360, primaryPal.chroma, primaryPal.initialLightness);
+    const secondaryPal = this.secondary
+      ? LCHPalette.fromHex(this.secondary)
+      : new LCHPalette((primaryPal.hue + 60) % 360, primaryPal.chroma, primaryPal.initialLightness);
+    const tertiaryPal = this.tertiary
+      ? LCHPalette.fromHex(this.tertiary)
+      : new LCHPalette(
+          (primaryPal.hue + 180) % 360,
+          primaryPal.chroma,
+          primaryPal.initialLightness,
+        );
 
     const primaryLightness = primaryPal.initialLightness!;
     const secondaryLightness = secondaryPal.initialLightness!;

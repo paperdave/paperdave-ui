@@ -3,6 +3,11 @@
 // Uncomment the below for a font that is 2.5x the filesize (281kb)
 // @import url('https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..1000,0..1,0..1,0..1&display=swap');
 
+@import './components/layout-button-row/layout-button-row.scss';
+@import './components/layout-container/layout-container.scss';
+@import './components/layout-flex/layout-flex.scss';
+@import './components/layout-grid/layout-grid.scss';
+
 // Required to use this box model as the default.
 *,
 ::before,
@@ -13,29 +18,6 @@
 * {
   font-variation-settings: 'MONO' var(--text-mono), 'CASL' var(--text-casual),
     'slnt' var(--text-slant), 'CRSV' var(--text-cursive);
-}
-
-:root {
-  // We use css variables for the variable font properties
-  --text-mono: 0;
-  --text-casual: 0.25;
-  --text-slant: 0;
-  --text-cursive: 0.5;
-  // We use css variables for material symbols
-  --icon-fill: 1;
-  --icon-grad: 0;
-  // The default theme, extracted from <theme-root/>'s defaults
-  --bg: 241, 242, 243;
-  --on-bg: 75, 67, 73;
-  --pri: 32, 199, 72;
-  --on-pri: -39, 43, -46;
-  --on-bg-pri: -52, 87, -26;
-  --sec: -162, 206, 215;
-  --on-sec: -72, 48, 61;
-  --on-bg-sec: -99, 92, 108;
-  --tri: 226, 137, 258;
-  --on-tri: 61, -26, 94;
-  --on-bg-tri: 113, 18, 145;
 }
 
 // Set --text-mono variable instead of switching fonts.
@@ -63,97 +45,4 @@ h5,
 h6,
 p {
   margin: 0;
-}
-
-layout-flex {
-  display: flex;
-  &[row] {
-    flex-direction: row;
-  }
-  &,
-  &[column] {
-    flex-direction: column;
-  }
-  &[row][reverse] {
-    flex-direction: row-reverse;
-  }
-  &[reverse],
-  &[column][reverse] {
-    flex-direction: column-reverse;
-  }
-  &[gap] {
-    gap: 1rem;
-  }
-  &[center] {
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-layout-grid {
-  display: grid;
-
-  &[center] {
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-layout-button-row {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-layout-button-row :empty {
-  flex: 1;
-}
-layout-button-row[align='left'] {
-  justify-content: flex-start;
-}
-layout-button-row[align='right'] {
-  justify-content: flex-end;
-}
-
-layout-container {
-  display: grid;
-  align-items: center;
-  margin: 2rem 0;
-  width: 100%;
-  row-gap: 1rem;
-
-  & > * {
-    grid-column: 3;
-  }
-  & > .full-width,
-  & > layout-container {
-    grid-column: 2 / -2;
-  }
-}
-
-layout-container layout-container {
-  margin: 0;
-}
-
-layout-container {
-  --size: 45rem;
-}
-layout-container[size='small'] {
-  --size: 20rem;
-}
-layout-container[size='medium'] {
-  --size: 30rem;
-}
-layout-container[size='large'] {
-  --size: 60rem;
-}
-layout-container[size='xl'] {
-  --size: 100rem;
-}
-
-layout-container,
-layout-container[size='full'] {
-  grid-template-columns: 0 2rem 1fr 2rem 0;
-}
-layout-container[size] {
-  grid-template-columns: 1fr 2rem min(var(--size), calc(100% - 4rem)) 2rem 1fr;
 }
