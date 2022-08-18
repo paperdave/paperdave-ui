@@ -9,6 +9,7 @@ import { ButtonVariant } from "./components/input-button/input-button";
 import { CheckboxVariant } from "./components/input-checkbox/input-checkbox";
 import { RadioVariant } from "./components/input-radio/input-radio";
 import { RadioVariant as RadioVariant1 } from "./components/input-radio/input-radio";
+import { TextboxType } from "./components/input-textbox/input-textbox";
 export namespace Components {
     interface InputButton {
         "href"?: string;
@@ -29,6 +30,18 @@ export namespace Components {
         "value"?: string;
         "variant"?: RadioVariant1;
     }
+    interface InputTextbox {
+        "disabled": boolean;
+        "error": boolean;
+        "focused": boolean;
+        "id": string;
+        "label"?: string;
+        "name"?: string;
+        "placeholder"?: string;
+        "revealed": boolean;
+        "type": TextboxType;
+        "value": string;
+    }
     interface ThemeRoot {
         "background": string;
         "error": string;
@@ -41,6 +54,10 @@ export namespace Components {
 export interface InputRadioGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLInputRadioGroupElement;
+}
+export interface InputTextboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLInputTextboxElement;
 }
 declare global {
     interface HTMLInputButtonElement extends Components.InputButton, HTMLStencilElement {
@@ -67,6 +84,12 @@ declare global {
         prototype: HTMLInputRadioGroupElement;
         new (): HTMLInputRadioGroupElement;
     };
+    interface HTMLInputTextboxElement extends Components.InputTextbox, HTMLStencilElement {
+    }
+    var HTMLInputTextboxElement: {
+        prototype: HTMLInputTextboxElement;
+        new (): HTMLInputTextboxElement;
+    };
     interface HTMLThemeRootElement extends Components.ThemeRoot, HTMLStencilElement {
     }
     var HTMLThemeRootElement: {
@@ -78,6 +101,7 @@ declare global {
         "input-checkbox": HTMLInputCheckboxElement;
         "input-radio": HTMLInputRadioElement;
         "input-radio-group": HTMLInputRadioGroupElement;
+        "input-textbox": HTMLInputTextboxElement;
         "theme-root": HTMLThemeRootElement;
     }
 }
@@ -102,6 +126,22 @@ declare namespace LocalJSX {
         "value"?: string;
         "variant"?: RadioVariant1;
     }
+    interface InputTextbox {
+        "disabled"?: boolean;
+        "error"?: boolean;
+        "focused"?: boolean;
+        "id"?: string;
+        "label"?: string;
+        "name"?: string;
+        "onBlur"?: (event: InputTextboxCustomEvent<void>) => void;
+        "onChange"?: (event: InputTextboxCustomEvent<string>) => void;
+        "onClearError"?: (event: InputTextboxCustomEvent<void>) => void;
+        "onFocus"?: (event: InputTextboxCustomEvent<void>) => void;
+        "placeholder"?: string;
+        "revealed"?: boolean;
+        "type"?: TextboxType;
+        "value"?: string;
+    }
     interface ThemeRoot {
         "background"?: string;
         "error"?: string;
@@ -115,6 +155,7 @@ declare namespace LocalJSX {
         "input-checkbox": InputCheckbox;
         "input-radio": InputRadio;
         "input-radio-group": InputRadioGroup;
+        "input-textbox": InputTextbox;
         "theme-root": ThemeRoot;
     }
 }
@@ -126,6 +167,7 @@ declare module "@stencil/core" {
             "input-checkbox": LocalJSX.InputCheckbox & JSXBase.HTMLAttributes<HTMLInputCheckboxElement>;
             "input-radio": LocalJSX.InputRadio & JSXBase.HTMLAttributes<HTMLInputRadioElement>;
             "input-radio-group": LocalJSX.InputRadioGroup & JSXBase.HTMLAttributes<HTMLInputRadioGroupElement>;
+            "input-textbox": LocalJSX.InputTextbox & JSXBase.HTMLAttributes<HTMLInputTextboxElement>;
             "theme-root": LocalJSX.ThemeRoot & JSXBase.HTMLAttributes<HTMLThemeRootElement>;
         }
     }
