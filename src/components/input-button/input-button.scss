@@ -13,7 +13,7 @@ input-button > * {
   color: rgb(var(--on-btn));
   border: 1.5px solid rgba(var(--on-btn), 0.4);
   outline: 0px solid rgba(var(--btn), 0.5);
-  transition: outline-width 100ms var(--ease-in-out);
+  transition: outline-width 100ms var(--ease);
   font-family: inherit;
   font-size: inherit;
   cursor: pointer;
@@ -29,7 +29,7 @@ input-button > * {
     content: ' ';
     background: rgb(var(--on-btn));
     opacity: 0;
-    transition: opacity 100ms var(--ease-in-out);
+    transition: opacity 100ms var(--ease);
   }
 
   &:focus-visible {

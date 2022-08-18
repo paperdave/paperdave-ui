@@ -1,4 +1,15 @@
-import { Component, Host, h, Prop, Element, EventEmitter, Event, Listen } from '@stencil/core';
+import {
+  Component,
+  Host,
+  h,
+  Prop,
+  Element,
+  EventEmitter,
+  Event,
+  Listen,
+  State,
+} from '@stencil/core';
+import { Theme, ThemeListener } from '../theme-root/utils';
 
 const INTERACTABLE_TAG_NAMES = ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON', 'A'];
 
@@ -33,11 +44,16 @@ export class InputTextbox {
   @Event() change: EventEmitter<string>;
   @Event() clearError: EventEmitter<void>;
 
-  #labelX = 0;
+  @State() labelX = 0;
+  @State() theme: Theme;
+
+  connectedCallback = ThemeListener.connectedCallback;
+  disconnectedCallback = ThemeListener.disconnectedCallback;
 
   private handleFocus = () => {
     this.focused = true;
   };
+
   private handleBlur = (ev: FocusEvent) => {
     const relatedTarget = ev.relatedTarget as HTMLElement;
     if (relatedTarget) {
@@ -53,10 +69,12 @@ export class InputTextbox {
     this.focused = false;
     // dispatch('blur');
   };
+
   private handleRelatedBlur = (ev: FocusEvent) => {
     (ev.currentTarget as HTMLElement).removeEventListener('blur', this.handleRelatedBlur);
     this.handleBlur(ev);
   };
+
   private handleInput = () => {
     this.value = this.refInput.value;
     // dispatch('change', value ?? '');
@@ -87,7 +105,7 @@ export class InputTextbox {
   }
 
   componentDidLoad() {
-    this.#labelX = this.refLabel?.offsetLeft || 0;
+    this.labelX = this.refLabel?.offsetLeft || 0;
     if (document.activeElement === this.refInput) {
       this.focused = true;
     }
@@ -99,8 +117,11 @@ export class InputTextbox {
   render() {
     const expanded = this.focused || !!this.value;
 
+    const bgLightness = this.theme.neutral.initialLightness!;
+    const backgroundColor = this.theme.neutral.hexAt(bgLightness + (bgLightness > 50 ? +5 : -5));
+
     return (
-      <Host expanded={expanded}>
+      <Host expanded={expanded} style={{ backgroundColor }}>
         {this.label && <div class="cover">{this.label}</div>}
 
         <slot name="left" />
@@ -110,10 +131,10 @@ export class InputTextbox {
               htmlFor={this.id + '-input'}
               ref={el => (this.refLabel = el)}
               style={{
-                '--offsetX': this.#labelX ? `${this.#labelX}px` : '',
+                '--offsetX': this.labelX ? `${this.labelX}px` : '',
               }}
               class={{
-                expand: expanded && this.#labelX === 0,
+                expand: expanded && this.labelX === 0,
               }}
             >
               {this.label}

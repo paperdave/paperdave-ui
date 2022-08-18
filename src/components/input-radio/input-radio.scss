@@ -22,8 +22,8 @@ input-radio {
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 50%;
-    outline: 0px solid RGBA(var(--on-bg), 0.45);
-    transition: outline-width 100ms var(--ease-in-out), outline-color 250ms var(--ease-in-out);
+    outline: 0px solid rgba(var(--on-bg), 0.45);
+    transition: outline-width 100ms var(--ease), outline-color 250ms var(--ease);
 
     & > div {
       border-radius: 50%;
@@ -35,18 +35,18 @@ input-radio {
     }
     .border,
     .border2 {
-      border: 2px solid RGB(var(--on-bg));
-      transition: transform 250ms var(--ease-in-out), border-color 250ms var(--ease-in-out);
+      border: 2px solid rgb(var(--on-bg));
+      transition: transform 250ms var(--ease), border-color 250ms var(--ease);
     }
     .inner {
-      background-color: RGB(var(--on-bg));
+      background-color: rgb(var(--on-bg));
       left: 25%;
       top: 25%;
       width: 50%;
       height: 50%;
-      transition: transform 250ms var(--ease-in-out), background-color 250ms var(--ease-in-out),
-        opacity 250ms var(--ease-in-out);
-      transform: scale(0.8);
+      transition: transform 250ms var(--ease), background-color 250ms var(--ease),
+        opacity 200ms var(--ease);
+      transform: scale(0.6);
       opacity: 0;
     }
   }
@@ -54,19 +54,19 @@ input-radio {
     outline-width: 3px;
   }
   input:checked + .visual {
-    outline-color: RGBA(var(--acc), 0.45);
+    outline-color: rgba(var(--acc), 0.45);
 
     .border {
       transform: scale(1.03);
-      border-color: RGB(var(--acc));
+      border-color: rgb(var(--acc));
     }
     .border2 {
       transform: scale(0.9);
-      border-color: RGB(var(--acc));
+      border-color: rgb(var(--acc));
     }
     .inner {
       transform: scale(1);
-      background-color: RGB(var(--acc));
+      background-color: rgb(var(--acc));
       opacity: 1;
     }
   }

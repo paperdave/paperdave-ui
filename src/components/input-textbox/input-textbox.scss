@@ -17,8 +17,8 @@ $labelFocusScale: 75%;
   position: relative;
   flex: 1;
   align-items: center;
-  transition: border-color 100ms var(--ease-in-out), outline-color 100ms var(--ease-in-out),
-    outline-width 100ms var(--ease-in-out);
+  transition: border-color 100ms var(--ease), outline-color 100ms var(--ease),
+    outline-width 100ms var(--ease);
   outline: solid 0px rgba(var(--tb), 0.6);
   border: 2px solid rgba(var(--on-bg), 0.7);
   border-radius: 0.3rem;
@@ -47,7 +47,7 @@ $labelFocusScale: 75%;
     &::placeholder {
       transform: translateY(5px);
       opacity: 0;
-      transition: opacity 100ms var(--ease-in-out), transform 0ms 100ms;
+      transition: opacity 100ms var(--ease), transform 0ms 100ms;
       color: rgb(var(--on-bg));
     }
   }
@@ -55,7 +55,7 @@ $labelFocusScale: 75%;
   label {
     position: absolute;
     transform-origin: left center;
-    transition: transform 175ms var(--ease-in-out), color 100ms var(--ease-in-out);
+    transition: transform 175ms var(--ease), color 100ms var(--ease);
     pointer-events: none;
     color: rgba(var(--on-bg), 0.45);
   }
@@ -65,7 +65,7 @@ $labelFocusScale: 75%;
     top: -5px;
     left: 0.25rem;
     transform: scaleX(0);
-    transition: transform 125ms var(--ease-in-out);
+    transition: transform 125ms var(--ease);
     background: RGB(var(--bg));
     padding: 0 0.4rem;
     height: 5px;

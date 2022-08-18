@@ -1,6 +1,7 @@
-import { Component, Host, h, Prop, Element } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Event, EventEmitter } from '@stencil/core';
 import { ColorArray } from './color-utils';
 import { LCHPalette } from './lch-palette';
+import { themeMap, Theme } from './utils';
 
 const rgb = (c: ColorArray) => c.map(x => Math.round(x)).join(',');
 
@@ -16,57 +17,91 @@ export class ThemeRoot {
   @Prop() tertiary: string | undefined = undefined;
   @Prop() error: string = '#ff0000';
 
-  @Element() el?: HTMLElement;
-  private waiting = false;
+  @Event({
+    bubbles: false,
+    cancelable: false,
+  })
+  themeChange: EventEmitter<Theme>;
+
+  @Element() el?: HTMLThemeRootElement;
+  #waiting = false;
+
+  #neutralPal: LCHPalette;
+  #primaryPal: LCHPalette;
+  #secondaryPal: LCHPalette;
+  #tertiaryPal: LCHPalette;
+
+  #calculateTheme() {
+    this.#neutralPal = LCHPalette.fromHex(this.background);
+    this.#primaryPal = LCHPalette.fromHex(this.primary);
+    this.#secondaryPal = this.secondary
+      ? LCHPalette.fromHex(this.secondary)
+      : new LCHPalette(
+          (this.#primaryPal.hue + 60) % 360,
+          this.#primaryPal.chroma,
+          this.#primaryPal.initialLightness,
+        );
+    this.#tertiaryPal = this.tertiary
+      ? LCHPalette.fromHex(this.tertiary)
+      : new LCHPalette(
+          (this.#primaryPal.hue + 180) % 360,
+          this.#primaryPal.chroma,
+          this.#primaryPal.initialLightness,
+        );
+  }
+
+  connectedCallback() {
+    themeMap.set(this.el, this.getTheme());
+  }
 
   componentWillRender() {
+    this.#calculateTheme();
+    this.themeChange.emit({
+      neutral: this.#neutralPal,
+      primary: this.#primaryPal,
+      secondary: this.#secondaryPal,
+      tertiary: this.#tertiaryPal,
+    });
     this.el?.setAttribute('swap', '');
   }
 
   componentDidRender() {
-    if (!this.waiting) {
-      this.waiting = true;
+    if (!this.#waiting) {
+      this.#waiting = true;
       requestAnimationFrame(() => {
-        this.waiting = false;
+        this.#waiting = false;
         this.el?.removeAttribute('swap');
       });
     }
   }
 
+  private getTheme() {
+    if (!this.#neutralPal) {
+      this.#calculateTheme();
+    }
+    return {
+      neutral: this.#neutralPal,
+      primary: this.#primaryPal,
+      secondary: this.#secondaryPal,
+      tertiary: this.#tertiaryPal,
+    };
+  }
+
   render() {
-    const neutralPal = LCHPalette.fromHex(this.background);
-    const primaryPal = LCHPalette.fromHex(this.primary);
-    const secondaryPal = this.secondary
-      ? LCHPalette.fromHex(this.secondary)
-      : new LCHPalette((primaryPal.hue + 60) % 360, primaryPal.chroma, primaryPal.initialLightness);
-    const tertiaryPal = this.tertiary
-      ? LCHPalette.fromHex(this.tertiary)
-      : new LCHPalette(
-          (primaryPal.hue + 180) % 360,
-          primaryPal.chroma,
-          primaryPal.initialLightness,
-        );
-
-    const primaryLightness = primaryPal.initialLightness!;
-    const secondaryLightness = secondaryPal.initialLightness!;
-    const tertiaryLightness = tertiaryPal.initialLightness!;
-
-    const bgLightness = neutralPal.initialLightness!;
-
     return (
       <Host
         style={{
-          '--bg': rgb(neutralPal.colorAt(bgLightness)),
-          '--on-bg': rgb(neutralPal.colorOn(bgLightness)),
-          '--pri': rgb(primaryPal.colorAt(primaryLightness)),
-          '--on-pri': rgb(primaryPal.colorOn(primaryLightness)),
-          '--on-bg-pri': rgb(primaryPal.colorOn(bgLightness)),
-          '--sec': rgb(secondaryPal.colorAt(secondaryLightness)),
-          '--on-sec': rgb(secondaryPal.colorOn(secondaryLightness)),
-          '--on-bg-sec': rgb(secondaryPal.colorOn(bgLightness)),
-          '--tri': rgb(tertiaryPal.colorAt(tertiaryLightness)),
-          '--on-tri': rgb(tertiaryPal.colorOn(tertiaryLightness)),
-          '--on-bg-tri': rgb(tertiaryPal.colorOn(bgLightness)),
+          '--bg': rgb(this.#neutralPal.colorAt(this.#neutralPal.initialLightness)),
+          '--on-bg': rgb(this.#neutralPal.colorOn(this.#neutralPal.initialLightness)),
+          '--pri': rgb(this.#primaryPal.colorAt(this.#primaryPal.initialLightness)),
+          '--on-pri': rgb(this.#primaryPal.colorOn(this.#primaryPal.initialLightness)),
+          '--on-bg-pri': rgb(this.#primaryPal.colorOn(this.#neutralPal.initialLightness)),
+          '--sec': rgb(this.#secondaryPal.colorAt(this.#secondaryPal.initialLightness)),
+          '--on-sec': rgb(this.#secondaryPal.colorOn(this.#secondaryPal.initialLightness)),
+          '--on-bg-sec': rgb(this.#secondaryPal.colorOn(this.#neutralPal.initialLightness)),
+          '--tri': rgb(this.#tertiaryPal.colorAt(this.#tertiaryPal.initialLightness)),
+          '--on-tri': rgb(this.#tertiaryPal.colorOn(this.#tertiaryPal.initialLightness)),
+          '--on-bg-tri': rgb(this.#tertiaryPal.colorOn(this.#neutralPal.initialLightness)),
         }}
       >
         <slot />

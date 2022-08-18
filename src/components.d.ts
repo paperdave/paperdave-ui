@@ -10,6 +10,7 @@ import { CheckboxVariant } from "./components/input-checkbox/input-checkbox";
 import { RadioVariant } from "./components/input-radio/input-radio";
 import { RadioVariant as RadioVariant1 } from "./components/input-radio/input-radio";
 import { TextboxType } from "./components/input-textbox/input-textbox";
+import { Theme } from "./components/theme-root/utils";
 export namespace Components {
     interface InputButton {
         "href"?: string;
@@ -58,6 +59,10 @@ export interface InputRadioGroupCustomEvent<T> extends CustomEvent<T> {
 export interface InputTextboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLInputTextboxElement;
+}
+export interface ThemeRootCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLThemeRootElement;
 }
 declare global {
     interface HTMLInputButtonElement extends Components.InputButton, HTMLStencilElement {
@@ -146,6 +151,7 @@ declare namespace LocalJSX {
         "background"?: string;
         "error"?: string;
         "inline"?: boolean;
+        "onThemeChange"?: (event: ThemeRootCustomEvent<Theme>) => void;
         "primary"?: string;
         "secondary"?: string | undefined;
         "tertiary"?: string | undefined;

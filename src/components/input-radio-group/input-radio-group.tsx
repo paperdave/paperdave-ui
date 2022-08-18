@@ -38,7 +38,6 @@ export class InputRadioGroup {
   @Watch('value')
   watchValue(newValue: string, oldValue: string) {
     if (newValue !== oldValue) {
-      console.log('value changed', newValue, oldValue);
       this.change.emit(newValue);
     }
   }
