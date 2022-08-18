@@ -1,4 +1,4 @@
-import { Element, getElement, State } from '@stencil/core';
+import { getElement } from '@stencil/core';
 import { LCHPalette } from './lch-palette';
 import { ThemeRoot } from './theme-root';
 
