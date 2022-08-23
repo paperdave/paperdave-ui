@@ -28,7 +28,7 @@ export class InputTextbox {
   refLabel: HTMLLabelElement;
   refInput: HTMLInputElement;
 
-  @Prop() id = `paperdave-textbox-${i++}`;
+  @Prop() group = `paperdave-textbox-${i++}`;
   @Prop({ reflect: true }) type: TextboxType = 'text';
   @Prop() label?: string;
   @Prop() name?: string;
@@ -39,9 +39,7 @@ export class InputTextbox {
   @Prop({ mutable: true, reflect: true }) focused = false;
   @Prop({ mutable: true }) revealed = false;
 
-  @Event() blur: EventEmitter<void>;
-  @Event() focus: EventEmitter<void>;
-  @Event() change: EventEmitter<string>;
+  @Event() valueChange: EventEmitter<string>;
   @Event() clearError: EventEmitter<void>;
 
   @State() labelX = 0;
@@ -128,7 +126,7 @@ export class InputTextbox {
         <div class="main">
           {this.label && (
             <label
-              htmlFor={this.id + '-input'}
+              htmlFor={this.group + '-input'}
               ref={el => (this.refLabel = el)}
               style={{
                 '--offsetX': this.labelX ? `${this.labelX}px` : '',
@@ -141,7 +139,7 @@ export class InputTextbox {
             </label>
           )}
           <input
-            id={this.id + '-input'}
+            id={this.group + '-input'}
             ref={el => (this.refInput = el)}
             type="text"
             value={this.value}

@@ -24,7 +24,7 @@ export class InputRadioGroup {
   @Prop({ mutable: true, reflect: true }) value?: string;
   @Prop() variant?: RadioVariant;
 
-  @Event() change: EventEmitter<string>;
+  @Event() valueChange: EventEmitter<string>;
 
   @Listen('change', { capture: true })
   handleChange(event: Event) {
@@ -38,7 +38,7 @@ export class InputRadioGroup {
   @Watch('value')
   watchValue(newValue: string, oldValue: string) {
     if (newValue !== oldValue) {
-      this.change.emit(newValue);
+      this.valueChange.emit(newValue);
     }
   }
 

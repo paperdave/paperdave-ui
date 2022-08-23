@@ -35,7 +35,7 @@ export namespace Components {
         "disabled": boolean;
         "error": boolean;
         "focused": boolean;
-        "id": string;
+        "group": string;
         "label"?: string;
         "name"?: string;
         "placeholder"?: string;
@@ -127,7 +127,7 @@ declare namespace LocalJSX {
     }
     interface InputRadioGroup {
         "name"?: string;
-        "onChange"?: (event: InputRadioGroupCustomEvent<string>) => void;
+        "onValueChange"?: (event: InputRadioGroupCustomEvent<string>) => void;
         "value"?: string;
         "variant"?: RadioVariant1;
     }
@@ -135,13 +135,11 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "error"?: boolean;
         "focused"?: boolean;
-        "id"?: string;
+        "group"?: string;
         "label"?: string;
         "name"?: string;
-        "onBlur"?: (event: InputTextboxCustomEvent<void>) => void;
-        "onChange"?: (event: InputTextboxCustomEvent<string>) => void;
         "onClearError"?: (event: InputTextboxCustomEvent<void>) => void;
-        "onFocus"?: (event: InputTextboxCustomEvent<void>) => void;
+        "onValueChange"?: (event: InputTextboxCustomEvent<string>) => void;
         "placeholder"?: string;
         "revealed"?: boolean;
         "type"?: TextboxType;
