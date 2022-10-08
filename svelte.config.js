@@ -8,6 +8,9 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
+		alias: {
+			'@paperdave/ui': 'src/lib'
+		},
 		adapter: adapter()
 	}
 };
