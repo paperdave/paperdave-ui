@@ -1,38 +1,12 @@
-# create-svelte
+# @paperdave/ui
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+My own ui library for making web applications. It has these keys:
 
-## Creating a project
+- Polished and good feeling to interact with, with the extreme attention to detail I am known for.
+- Easily themeable and customizable, beyond dark and light modes.
+- Simplistic and small, but large enough to cover most needs.
+- "Modern" and "Fast", but those words are thrown around too much
 
-If you're seeing this, you've probably already done this step. Congrats!
+Its overall style can be described as a "Less Corporate" version of Material Design, with my own design ideals thrown in. We use simple LCH-based palettes over their HCT tonal ones.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Components are built using Stencil, which exports them as web components, to be used in any framework, such as Svelte, React, Vue, Raw HTML, etc.
