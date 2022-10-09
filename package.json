@@ -1,6 +1,6 @@
 {
 	"name": "@paperdave/ui",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "svelte-kit sync && svelte-package",
@@ -36,6 +36,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@changesets/cli": "^2.25.0",
+		"@paperdave/utils": "^1.4.1",
 		"svelte-simple-markdown": "^1.0.3"
 	}
 }

@@ -7,8 +7,8 @@
 	import './input-checkbox.scss';
 	import type { CheckboxVariant } from './input-checkbox.types';
 
-	export let name: string;
-	export let value: string;
+	export let name: string | undefined = undefined;
+	export let value: string | undefined = undefined;
 	// export let group: string[] | undefined = undefined;
 	export let checked = false;
 	export let variant: CheckboxVariant = 'primary';

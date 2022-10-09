@@ -2,8 +2,9 @@ theme-root {
 	display: block;
 	background: rgb(var(--bg));
 	color: rgb(var(--on-bg));
-	--ease: cubic-bezier(0.4, 0, 0.1, 1);
 	flex: 1;
+	--ease: cubic-bezier(0.4, 0, 0.1, 1);
+	--ease-out: cubic-bezier(0.15, 0.9, 0.6, 1);
 }
 
 theme-root.swap * {

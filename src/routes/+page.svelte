@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { Button, TextBox, ThemeRoot, Radio, LCHPalette } from '@paperdave/ui';
 	import Checkbox from '@paperdave/ui/input-checkbox/Checkbox.svelte';
+	import Switch from '@paperdave/ui/input-switch/Switch.svelte';
 
 	let background = '#eeeeee';
 	let primary: string | undefined = undefined;
+	let secondary: string | undefined = undefined;
+	let tertiary: string | undefined = undefined;
 
 	function randomizeColor() {
 		background =
@@ -46,23 +49,49 @@
 			porting the components to any other framework that supports styling with scss.
 		</p>
 
+		<h2>Theme Controls</h2>
+
 		<layout-button-row>
 			<Button on:click={randomizeColor}>Randomize</Button>
 			<input type="color" bind:value={background} />
 			<input type="color" bind:value={primary} />
+			<input type="color" bind:value={secondary} />
+			<input type="color" bind:value={tertiary} />
 		</layout-button-row>
 
+		<h2>Button</h2>
+		<layout-button-row>
+			<Button>Button</Button>
+			<Button variant="primary">Button</Button>
+			<Button variant="secondary">Button</Button>
+			<Button variant="tertiary">Button</Button>
+			<Button variant="subtle">Button</Button>
+			<Button disabled>Disabled</Button>
+			<Button variant="primary" disabled>Disabled</Button>
+		</layout-button-row>
+
+		<h2>Text Box</h2>
 		<TextBox label="Hello World" />
 
+		<h2>Radio</h2>
 		<layout-input-group>
 			<Radio value="1" bind:group={thing}>Option 1</Radio>
-			<Radio value="2" bind:group={thing}>Option 2</Radio>
+			<Radio value="2" variant="secondary" bind:group={thing}>Option 2</Radio>
+			<Radio value="3" variant="tertiary" bind:group={thing}>Option 2</Radio>
 		</layout-input-group>
 
+		<h2>Checkbox</h2>
 		<layout-input-group>
-			<Checkbox name="a" value="a">Hi</Checkbox>
-			<Checkbox name="a" value="b" variant="secondary">Bye</Checkbox>
-			<Checkbox name="a" value="c" variant="tertiary">Bye</Checkbox>
+			<Checkbox>Option 1</Checkbox>
+			<Checkbox checked variant="secondary">Option 2</Checkbox>
+			<Checkbox variant="tertiary">Option 3</Checkbox>
+		</layout-input-group>
+
+		<h2>Switch</h2>
+		<layout-input-group>
+			<Switch checked>Option 1</Switch>
+			<Switch variant="secondary">Option 2</Switch>
+			<Switch checked variant="tertiary">Option 3</Switch>
 		</layout-input-group>
 	</layout-container>
 </ThemeRoot>
