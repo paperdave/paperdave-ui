@@ -2,6 +2,7 @@
 	import { Button, TextBox, ThemeRoot, Radio, LCHPalette } from '@paperdave/ui';
 	import Checkbox from '@paperdave/ui/input-checkbox/Checkbox.svelte';
 	import Switch from '@paperdave/ui/input-switch/Switch.svelte';
+	import Link from '@paperdave/ui/link/Link.svelte';
 
 	let background = '#eeeeee';
 	let primary: string | undefined = undefined;
@@ -48,6 +49,22 @@
 			Components are built using Svelte, as that is my preferred framework. The architecture allows
 			porting the components to any other framework that supports styling with scss.
 		</p>
+
+		<p>
+			<a href="https://npmjs.com/package/@paperdave/ui">View on npm</a>
+		</p>
+
+		<!-- <layout-link-row>
+			<a href="https://npmjs.com/package/@paperdave/ui">View on npm</a>
+			<a href="https://github.com/paperdave/ui">Source Code</a>
+			<a href="https://paperdave.net">paperdave.net</a>
+		</layout-link-row> -->
+
+		<layout-link-row>
+			<Link href="/">Page 2</Link>
+			<Link href="/somewhere">Page 3</Link>
+			<Link href="/cool">Page 4</Link>
+		</layout-link-row>
 
 		<h2>Theme Controls</h2>
 

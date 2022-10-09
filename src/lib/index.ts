@@ -16,3 +16,5 @@ export * from './layout-grid/layout-grid.types';
 
 export * from './theme-root/LCHPalette';
 export { default as ThemeRoot } from './theme-root/ThemeRoot.svelte';
+
+export { default as Link } from './link/Link.svelte';

@@ -39,19 +39,3 @@ theme-root.swap * {
 	--on-tri: 61, -26, 94;
 	--on-bg-tri: 113, 18, 145;
 }
-
-a {
-	color: rgb(var(--on-bg-pri));
-	text-decoration: none;
-
-	&:hover {
-		text-decoration: solid underline;
-	}
-
-	&:active {
-		background-color: rgb(var(--pri));
-		color: rgb(var(--on-pri));
-		border-radius: 6px;
-		outline: 4px solid rgb(var(--pri));
-	}
-}
