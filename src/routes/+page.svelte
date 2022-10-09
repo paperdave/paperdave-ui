@@ -56,12 +56,6 @@
 			<a href="https://paperdave.net">paperdave.net</a>
 		</layout-link-row>
 
-		<layout-link-row>
-			<Link href="/">Page 2</Link>
-			<Link href="/somewhere">Page 3</Link>
-			<Link href="/cool">Page 4</Link>
-		</layout-link-row>
-
 		<h2>Theme Controls</h2>
 
 		<layout-button-row>
