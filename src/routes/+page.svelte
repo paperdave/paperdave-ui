@@ -50,15 +50,11 @@
 			porting the components to any other framework that supports styling with scss.
 		</p>
 
-		<p>
-			<a href="https://npmjs.com/package/@paperdave/ui">View on npm</a>
-		</p>
-
-		<!-- <layout-link-row>
+		<layout-link-row>
 			<a href="https://npmjs.com/package/@paperdave/ui">View on npm</a>
 			<a href="https://github.com/paperdave/ui">Source Code</a>
 			<a href="https://paperdave.net">paperdave.net</a>
-		</layout-link-row> -->
+		</layout-link-row>
 
 		<layout-link-row>
 			<Link href="/">Page 2</Link>
